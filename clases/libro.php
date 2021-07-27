@@ -93,8 +93,8 @@
             else { return FALSE; } 
         }
 
-        public function agregarLibro(){
-            $consulta = "insert into libros ('isbn', 'titulo', 'preciov', 'preciol', 'idgenero', 'stock', 'stockmin') VALUES (".$_POST['isbn'].", ".$_POST['titulo']." ,".$_POST['preciov'].",".$_POST['preciol'].","."1".",".$_POST['stock'].",".$_POST['stockmin'].")";
+        public function agregarLibro($visbn, $vtitulo, $vpreciov, $vpreciol, $vgenero, $vstock, $vstockmin){
+            $consulta = "insert into libros values ( '". $visbn ."' , '". $vtitulo ."' , '". $vpreciov ."' , '". $vpreciol ."' , '". $vgenero ."' , '". $vstock ."' , '". $vstockmin ."' );";
             $result = $this->bd->ejecutar($consulta);
             return $result;
         }

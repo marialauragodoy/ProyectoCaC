@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -21,7 +20,8 @@
      
 </head>
 <body>
-     <!-- PRE LOADER -->
+
+<!-- PRE LOADER -->
      <section class="preloader">
           <div class="spinner">
                <span class="spinner-rotate"></span>
@@ -78,9 +78,7 @@
                </div>
           </div>
      </section>
-
-
-     <!-- CREATE DETAIL -->
+     
      <section id="create-detail" data-stellar-background-ratio="0.5">
           <div class="container">
                <div class="row">
@@ -88,61 +86,65 @@
                     <div class="col-md-offset-1 col-md-10 col-sm-12">
                          <!-- CREATE THUMB -->
                          <div class="create-detail-thumb">
-                              <!-- <div class="create-image">
-                                   <img src="img/libros.png" class="img-responsive" alt="create Image">
-                              </div> -->
-                              <h2>Complete el Formulario</h2>
-                              <form action="agregar.php" method="POST">
-                                   <div class="form-group">
-                                        <label for="title">Titulo</label>
-                                        <input type="text" class="form-control" id="title" name="titulo" placeholder="Titulo">
-                                   </div>
-                                   <div class="form-row">
-                                        <div class="form-group col-md-4">
-                                           <label for="isbn">ISBN</label>
-                                           <input type="text" class="form-control" id="isbn" name="isbn" placeholder="ISBN">
-                                        </div>
-                                        <div class="form-group col-md-2">
-                                           <label for="stock">Stock </label>
-                                           <input type="text" class="form-control" id="stock" name="stock" placeholder="Stock">
-                                        </div>
-                                        <div class="form-group col-md-2">
-                                             <label for="stockm">Stock Mínimo</label>
-                                             <input type="text" class="form-control" id="stockm" name="stockm" placeholder="Stock Mínimo">
-                                          </div>
-                                      </div>
-                                   <div class="form-row">
-                                        <div class="form-group col-md-4">
-                                             <label for="pv">Precio Venta</label>
-                                             <input type="text" class="form-control" id="pv" name="pv" placeholder="Precio Venta">
-                                        </div>
-                                        <div class="form-group col-md-6">
-                                             <label for="pl">Precio Lista</label>
-                                             <input type="text" class="form-control" id="pl" name="pl" placeholder="Precio Lista">
-                                        </div>
-                                        <div class="form-group col-md-6">
-                                             <label for="inputState">Categoria</label>
-                                             <select id="inputState" name="idgenero" class="form-control">
-                                               <option selected disabled value="">Elige...</option>
-                                               <option>Terror</option>
-                                               <option>Romántico</option>
-                                               <option>Aventura</option>
-                                               <option>Acción</option>
-                                               <option>Thiller</option>
-                                               <option>Fantasía</option>
-                                             </select>
+                            <h2>Confirme si desea agregar este libro</h2>
+                            <br>
+                            <a href="#" class="section-btn" data-toggle="modal" data-target="#modal-form">Agregar</a>
+                            <a href="create.php" class="section-btn" >Cancelar</a>
+                            </div>
+                </div> 
+            </div>
+        </div>
+        
+   </section>
+        <section class="modal fade" id="modal-form" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+          <div class="modal-dialog modal-lg">
+               <div class="modal-content modal-popup">
+               <?php 
+               include_once("clases/libro.php");
+                $libro = new Libro(); $visbn = $_POST["isbn"];
+                $vtitulo = $_POST['titulo']; 
+                $vpreciov = $_POST['pv'];
+                $vpreciol = $_POST['pl'];
+                $vgenero = 1;
+                // $vgenero = $_POST['genero'];
+                $vstock = $_POST['stock'];
+                $vstockmin = $_POST['stockm'];    
+                $libro = new Libro();   
+                    
+                $result = $libro->agregarLibro($visbn, $vtitulo, $vpreciov, $vpreciol, $vgenero, $vstock, $vstockmin);
+                    if ($result){ ?>
+
+                         <div class="modal-body">
+                         <div class="container-fluid">
+                              <div class="row">
+                                   <div class="col-md-12 col-sm-12">
+                                        <div class="modal-title">
+                                             <h2>LIBRO AGREGADO</h2>
+                                             <a href="create.php" class="section-btn" >Volver</a>
                                         </div>
                                    </div>
-                                   <input type="submit" class="form-control" name="submit" value="Agregar">
-                                 </form>
+                              </div>
+                         </div>
+                         </div>
+                    <?php } else { ?>
+                    <div class="modal-body">
+                         <div class="container-fluid">
+                              <div class="row">
+                                   <div class="col-md-12 col-sm-12">
+                                        <div class="modal-title">
+                                             <h2>LIBRO NO AGREGADO</h2>
+                                             <a href="create.php" class="section-btn" >Volver</a>
+                                        </div>
+                                   </div>
+                              </div>
                          </div>
                     </div>
-                    
-               </div>
-          </div>
-     </section>
+  
+                    <?php } ?>
+                    </div>
+                    </div>
+                </section>
 
-     
      <!-- FOOTER -->
      <footer data-stellar-background-ratio="0.5">
           <div class="container">
@@ -181,13 +183,12 @@
      
 
      <!-- SCRIPTS -->
-     <script src="js/jquery.js"></script>
+<script src="js/jquery.js"></script>
      <script src="js/bootstrap.min.js"></script>
      <script src="js/jquery.stellar.min.js"></script>
      <script src="js/jquery.magnific-popup.min.js"></script>
      <script src="js/smoothscroll.js"></script>
      <script src="js/custom.js"></script>
-     <script src="./js/form-validation.js"></script>
 
 </body>
 </html>

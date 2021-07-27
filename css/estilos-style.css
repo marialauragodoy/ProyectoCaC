@@ -379,7 +379,7 @@
 
   #create-header,
   #create-detail {
-    text-align: left;
+    text-align: center;
   }
 
   #create-header {
@@ -409,7 +409,7 @@
     -moz-box-shadow: 0 1px 30px rgba(0, 0, 0, 0.1);
     box-shadow: 0 1px 30px rgba(0, 0, 0, 0.1);
     border-radius: 3px;
-    text-align: left;
+    text-align: center;
     margin-bottom: 30px;
     height: 350px;
   }
@@ -515,6 +515,9 @@
   .form-row .form-group{
     padding-left: 0%;
     padding-right: 1%;
+  }
+  form label {
+    color: #5c5c5c;
   }
   a.section-btn:focus{
     background: #2782d6;  
@@ -1192,4 +1195,29 @@
   }
   label{
     color: #ffffff;
+  }
+
+  input[type="submit"].form-control{
+    background: #2782d6;  
+    color: #ffffff;
+    font-size: 15px;
+    font-weight: 500;
+    border: 0;
+    border-radius: 100px;
+    cursor: pointer;
+    -webkit-transition: 0.5s;
+    transition: 0.5s;
+  }
+
+  input[type="submit"].form-control:hover{
+    background: #0d3e6b; 
+    background: -webkit-linear-gradient(to right, #1668b4, #0d3e6b);  
+    background: linear-gradient(to right, #1668b4, #0d3e6b);
+    color: #ffffff;
+    font-size: 15px;
+    font-weight: 500;
+    letter-spacing: -1px;
+  }
+  input[type="submit"].form-control{
+    float:right;
   }
