@@ -1,5 +1,5 @@
 
-<html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE-Edge">
@@ -214,4 +214,4 @@
     <script src="js/custom.js"></script>
 
 </body>
-</html>
+
