@@ -82,69 +82,43 @@
      <section id="create-detail" data-stellar-background-ratio="0.5">
           <div class="container">
                <div class="row">
-
-                    <div class="col-md-offset-1 col-md-10 col-sm-12">
-                         <!-- CREATE THUMB -->
-                         <div class="create-detail-thumb">
-                            <h2>Confirme si desea agregar este libro</h2>
-                            <br>
-                            <a href="#" class="section-btn" data-toggle="modal" data-target="#modal-form">Agregar</a>
-                            <a href="create.php" class="section-btn" >Cancelar</a>
-                            </div>
-                </div> 
-            </div>
-        </div>
-        
-   </section>
-        <section class="modal fade" id="modal-form" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-          <div class="modal-dialog modal-lg">
-               <div class="modal-content modal-popup">
                <?php 
                include_once("clases/libro.php");
-                $libro = new Libro(); $visbn = $_POST["isbn"];
+                $libro = new Libro(); 
+                $visbn = $_POST["isbn"];
                 $vtitulo = $_POST['titulo']; 
                 $vpreciov = $_POST['pv'];
                 $vpreciol = $_POST['pl'];
-                $vgenero = 1;
-                // $vgenero = $_POST['genero'];
+                $vgenero = $_POST['idgenero'];
                 $vstock = $_POST['stock'];
                 $vstockmin = $_POST['stockm'];    
                 $libro = new Libro();   
                     
                 $result = $libro->agregarLibro($visbn, $vtitulo, $vpreciov, $vpreciol, $vgenero, $vstock, $vstockmin);
-                    if ($result){ ?>
-
-                         <div class="modal-body">
-                         <div class="container-fluid">
-                              <div class="row">
-                                   <div class="col-md-12 col-sm-12">
-                                        <div class="modal-title">
-                                             <h2>LIBRO AGREGADO</h2>
-                                             <a href="create.php" class="section-btn" >Volver</a>
-                                        </div>
-                                   </div>
-                              </div>
-                         </div>
-                         </div>
-                    <?php } else { ?>
-                    <div class="modal-body">
-                         <div class="container-fluid">
-                              <div class="row">
-                                   <div class="col-md-12 col-sm-12">
-                                        <div class="modal-title">
-                                             <h2>LIBRO NO AGREGADO</h2>
-                                             <a href="create.php" class="section-btn" >Volver</a>
-                                        </div>
-                                   </div>
-                              </div>
+               if ($result){ ?>
+                    <div class="col-md-offset-1 col-md-10 col-sm-12">
+                         <!-- CREATE THUMB -->
+                         <div class="create-detail-thumb">
+                            <h2>¡Libro Agregado!</h2>
+                            <br>
+                            <a href="create.php" class="section-btn">Volver</a>
                          </div>
                     </div>
+               <?php } else { ?>
+                    <div class="col-md-offset-1 col-md-10 col-sm-12">
+                         <!-- CREATE THUMB -->
+                         <div class="create-detail-thumb">
+                            <h2>¡Libro Agregado!</h2>
+                            <br>
+                            <a href="create.php" class="section-btn">Volver</a>
+                         </div>
+                    </div> 
+               <?php } ?>
+               </div>
+          </div>
+     </section>
+        
   
-                    <?php } ?>
-                    </div>
-                    </div>
-                </section>
-
      <!-- FOOTER -->
      <footer data-stellar-background-ratio="0.5">
           <div class="container">
@@ -182,13 +156,13 @@
      </footer>
      
 
-     <!-- SCRIPTS -->
+<!-- SCRIPTS -->
 <script src="js/jquery.js"></script>
-     <script src="js/bootstrap.min.js"></script>
-     <script src="js/jquery.stellar.min.js"></script>
-     <script src="js/jquery.magnific-popup.min.js"></script>
-     <script src="js/smoothscroll.js"></script>
-     <script src="js/custom.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/jquery.stellar.min.js"></script>
+<script src="js/jquery.magnific-popup.min.js"></script>
+<script src="js/smoothscroll.js"></script>
+<script src="js/custom.js"></script>
 
 </body>
 </html>

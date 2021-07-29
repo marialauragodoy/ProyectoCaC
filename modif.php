@@ -84,6 +84,7 @@
                  <div class="col-md-offset-1 col-md-10 col-sm-12">
                        <!-- CREATE THUMB -->
                     <div class="delete-detail-thumb">
+                    <form action="modificar.php" method="POST">
                         <table class="table table-bordered">
                             <thead>
                                 <tr>
@@ -104,23 +105,27 @@
                               $cant = count($libros);
                               foreach($libros as $unlibro) { ?>
                               <tr>
-                                   <td> <?php echo $unlibro["isbn"] ?></td>
-                                   <td> <?php echo $unlibro["titulo"] ?></td>
-                                   <td> <?php echo $unlibro["preciov"] ?></td>
-                                   <td> <?php echo $unlibro["preciol"] ?></td>
-                                   <td> <?php echo $unlibro["genero"] ?></td>
-                                   <td> <?php echo $unlibro["stock"] ?></td>
-                                   <td> <?php echo $unlibro["stockmin"] ?></td>
-                                   <td><a href="#" class="button" data-toggle="modal" data-target="#modal-form">Modificar</a></td>
+                                   <td name="isbn"> <?php echo $unlibro["isbn"] ?></td>
+                                   <td id="titulo"> <?php echo $unlibro["titulo"] ?></td>
+                                   <td name="pv"> <?php echo $unlibro["preciov"] ?></td>
+                                   <td name="pl"> <?php echo $unlibro["preciol"] ?></td>
+                                   <td name="genero"> <?php echo $unlibro["genero"] ?></td>
+                                   <td name="stock"> <?php echo $unlibro["stock"] ?></td>
+                                   <td name="stockmin"> <?php echo $unlibro["stockmin"] ?></td>
+                                   <td><input type="submit" class="form-control" name="submit" value="Modificar"></td>
+                                   
                               </tr>
-                              <?php }?> 
+                              <?php
+                              }?> 
                           </tbody>
                             </table>
+                         </form>
                     </div>
                 </div>
             </div>
         </div>
     </section>
+    
      
      <!-- FOOTER -->
      <footer data-stellar-background-ratio="0.5">
@@ -158,7 +163,7 @@
           </div>
      </footer>
 
-     <section class="modal fade" id="modal-form" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+     <!-- <section class="modal fade" id="modal-form" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg">
              <div class="modal-content modal-popup">
     
@@ -177,18 +182,18 @@
                                            <h2>Modificar</h2>
                                       </div>
     
-                                      <!-- TAB PANES -->
+                                      
                                       <div class="tab-content">
                                            <div role="tabpanel" class="tab-pane fade in active" id="sign_in">
-                                             <form>
+                                             <form action="modificar.php" method="POST">
                                                   <div class="form-group">
                                                        <label for="title">Titulo</label>
-                                                       <input class="form-control" id="title" placeholder="Titulo">
+                                                       <input class="form-control" id="title" placeholder="Titulo" value="">
                                                   </div>
                                                   <div class="form-row">
                                                        <div class="form-group col-md-4">
                                                           <label for="isbn">Stock <br></label>
-                                                          <input class="form-control" id="isbn" placeholder="ISBN">
+                                                          <input class="form-control" id="isbn" placeholder="ISBN" value="<?php echo $unlibro["isbn"];?>">
                                                        </div>
                                                        <div class="form-group col-md-4">
                                                           <label for="stock">Stock Mínimo</label>
@@ -218,7 +223,7 @@
                                                             </select>
                                                        </div>
                                                   </div>
-                                                  <a href="#" class="section-btn" data-toggle="modal" data-target="#modal-form">Agregar</a>
+                                                  <input type="submit" class="form-control" name="submit" value="Modificar">
                                                 </form>
                                            </div>
                                       </div>
@@ -230,7 +235,7 @@
     
              </div>
         </div>
-    </section>
+    </section> -->
 
      <!-- SCRIPTS -->
      <script src="js/jquery.js"></script>

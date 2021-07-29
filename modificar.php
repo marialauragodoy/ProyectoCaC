@@ -1,9 +1,8 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
 
-     <title>Agregar Libros</title>
+     <title>Modificar Libros</title>
 
      <meta charset="UTF-8">
      <meta http-equiv="X-UA-Compatible" content="IE=Edge">
@@ -18,9 +17,10 @@
 
      <!-- MAIN CSS -->
      <link rel="stylesheet" href="css/estilos-style.css">
-     
+          <?php include_once("clases/libro.php");?>
 </head>
 <body>
+
      <!-- PRE LOADER -->
      <section class="preloader">
           <div class="spinner">
@@ -64,85 +64,67 @@
 
           </div>
      </section>
-
-     <!-- CREATE HEADER -->
-     <section id="create-header" data-stellar-background-ratio="0.5">
+    
+     <!-- MODIF HEADER -->
+     <section id="modif-header" data-stellar-background-ratio="0.5">
           <div class="overlay"></div>
           <div class="container">
                <div class="row">
-
                     <div class="col-md-offset-1 col-md-5 col-sm-12">
-                         <h2>Agregá más libros a nuestra colección</h2>
-                    </div>
-                    
+                         <h2>Modifica libros de nuestra colección</h2>
+                    </div>     
                </div>
           </div>
      </section>
 
+    <form>
+        <?php $titulo = $_POST["titulo"];  ?>
+        <div class="form-group">
+            <label for="title">Titulo</label>
+            <input type="text" class="form-control" id="title" name="titulo" placeholder="Titulo" value="<?php $_POST["titulo"] ;?>">
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-4">
+                <label for="isbn">ISBN</label>
+                <input type="text" class="form-control" id="isbn" name="isbn" placeholder="ISBN" value="<?php $_POST["isbn"]; ?>">
+            </div>
+            <div class="form-group col-md-2">
+                <label for="stock">Stock </label>
+                <input type="text" class="form-control" id="stock" name="stock" placeholder="Stock" value="<?php $_POST["stock"]; ?>">
+            </div>
+            <div class="form-group col-md-2">
+                <label for="stockm">Stock Mínimo</label>
+                <input type="text" class="form-control" id="stockm" name="stockm" placeholder="Stock Mínimo" value="<?php $_POST["stockmin"]; ?>">
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-4">
+                <label for="pv">Precio Venta</label>
+                <input type="text" class="form-control" id="pv" name="pv" placeholder="Precio Venta" value="<?php $_POST["pv"]; ?>">
+            </div>
+            <div class="form-group col-md-6">
+                <label for="pl">Precio Lista</label>
+                <input type="text" class="form-control" id="pl" name="pl" placeholder="Precio Lista" value="<?php $_POST["pl"]; ?>">
+            </div>
+            <div class="form-group col-md-6">
+                <label for="inputState">Categoria</label>
+                <select id="inputState" name="idgenero" class="form-control">
+                    <option selected disabled value="">Elige...</option>
+                    <option value="1">Terror</option>
+                    <option value="2">Romántico</option>
+                    <option value="3">Aventura</option>
+                    <option value="4">Acción</option>
+                    <option value="5">Thiller</option>
+                    <option value="6">Fantasía</option>
+                </select>
+            </div>
+        </div>
+        <input type="submit" class="form-control" name="submit" value="Agregar">
+        <a href="modif.php" class="section-btn">Volver</a>
 
-     <!-- CREATE DETAIL -->
-     <section id="create-detail" data-stellar-background-ratio="0.5">
-          <div class="container">
-               <div class="row">
-
-                    <div class="col-md-offset-1 col-md-10 col-sm-12">
-                         <!-- CREATE THUMB -->
-                         <div class="create-detail-thumb">
-
-                              <h2>Complete el Formulario</h2>
-                              <form action="agregar.php" method="POST">
-                                   <div class="form-group">
-                                        <label for="title">Titulo</label>
-                                        <input type="text" class="form-control" id="title" name="titulo" placeholder="Titulo">
-                                   </div>
-                                   <div class="form-row">
-                                        <div class="form-group col-md-4">
-                                           <label for="isbn">ISBN</label>
-                                           <input type="text" class="form-control" id="isbn" name="isbn" placeholder="ISBN">
-                                        </div>
-                                        <div class="form-group col-md-2">
-                                           <label for="stock">Stock </label>
-                                           <input type="text" class="form-control" id="stock" name="stock" placeholder="Stock">
-                                        </div>
-                                        <div class="form-group col-md-2">
-                                             <label for="stockm">Stock Mínimo</label>
-                                             <input type="text" class="form-control" id="stockm" name="stockm" placeholder="Stock Mínimo">
-                                          </div>
-                                      </div>
-                                   <div class="form-row">
-                                        <div class="form-group col-md-4">
-                                             <label for="pv">Precio Venta</label>
-                                             <input type="text" class="form-control" id="pv" name="pv" placeholder="Precio Venta">
-                                        </div>
-                                        <div class="form-group col-md-6">
-                                             <label for="pl">Precio Lista</label>
-                                             <input type="text" class="form-control" id="pl" name="pl" placeholder="Precio Lista">
-                                        </div>
-                                        <div class="form-group col-md-6">
-                                             <label for="inputState">Categoria</label>
-                                             <select id="inputState" name="idgenero" class="form-control">
-                                               <option selected disabled value="">Elige...</option>
-                                               <option value="1">Terror</option>
-                                               <option value="2">Romántico</option>
-                                               <option value="3">Aventura</option>
-                                               <option value="4">Acción</option>
-                                               <option value="5">Thiller</option>
-                                               <option value="6">Fantasía</option>
-                                             </select>
-                                        </div>
-                                   </div>
-                                   <input type="submit" class="form-control" name="submit" value="Agregar">
-                                 </form>
-                         </div>
-                    </div>
-                    
-               </div>
-          </div>
-     </section>
-
-     
-     <!-- FOOTER -->
-     <footer data-stellar-background-ratio="0.5">
+    </form>
+<!-- FOOTER -->
+<footer data-stellar-background-ratio="0.5">
           <div class="container">
                <div class="row">
   
@@ -176,7 +158,6 @@
                </div>
           </div>
      </footer>
-     
 
      <!-- SCRIPTS -->
      <script src="js/jquery.js"></script>
@@ -185,7 +166,6 @@
      <script src="js/jquery.magnific-popup.min.js"></script>
      <script src="js/smoothscroll.js"></script>
      <script src="js/custom.js"></script>
-     <script src="./js/form-validation.js"></script>
 
 </body>
 </html>
