@@ -93,8 +93,44 @@
             else { return FALSE; } 
         }
 
+        public function eliminarLibro($isbn){
+            $libros = array();
+            $consulta = "delete from libros where libros.isbn=".$isbn;
+            $result = $this->bd->ejecutar($consulta);
+            return $result;
+        }
+
+        public function mostrarUnLibro($isbn){
+            $libros = array();
+            $consulta = "select * from libros where isbn=".$isbn;
+            $result = $this->bd->ejecutar($consulta);
+            if($result->num_rows > 0) {
+                while($fila = mysqli_fetch_assoc($result)){
+                    $genero = new Genero();
+                    $libro = array(
+                        "isbn" => $fila["isbn"],
+                        "titulo" => $fila["titulo"],
+                        "preciov" => $fila["preciov"],
+                        "preciol" => $fila["preciol"],
+                        "genero" => $genero->get_generos($fila["idgenero"]),
+                        "stock" => $fila["stock"],
+                        "stockmin" => $fila["stockmin"]
+                    );
+                    array_push($libros, $libro);
+                }
+                return $libro;
+            } 
+            else { return FALSE; } 
+        }
+        
         public function agregarLibro($visbn, $vtitulo, $vpreciov, $vpreciol, $vgenero, $vstock, $vstockmin){
             $consulta = "insert into libros values ( '". $visbn ."' , '". $vtitulo ."' , '". $vpreciov ."' , '". $vpreciol ."' , '". $vgenero ."' , '". $vstock ."' , '". $vstockmin ."' );";
+            $result = $this->bd->ejecutar($consulta);
+            return $result;
+        }
+
+        public function modificarLibro($visbn, $vtitulo, $vpreciov, $vpreciol, $vgenero, $vstock, $vstockmin){
+            $consulta = "update libros SET titulo='".$vtitulo."', preciov='".$vpreciov."', preciol='".$vpreciol."', idgenero='".$vgenero."', stock='".$vstock."', stockmin='".$vstockmin."' WHERE libros.isbn =".$visbn;
             $result = $this->bd->ejecutar($consulta);
             return $result;
         }

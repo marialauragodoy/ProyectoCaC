@@ -17,7 +17,7 @@
 
      <!-- MAIN CSS -->
      <link rel="stylesheet" href="css/estilos-style.css">
-          <?php include_once("clases/libro.php");?>
+         
 </head>
 <body>
 
@@ -84,10 +84,11 @@
                  <div class="col-md-offset-1 col-md-10 col-sm-12">
                        <!-- CREATE THUMB -->
                     <div class="delete-detail-thumb">
-                    <form action="modificar.php" method="POST">
+                    
                         <table class="table table-bordered">
                             <thead>
                                 <tr>
+                                <th>ISBN</th>
                                 <th>Titulo</th>
                                 <th>Precio Venta</th>
                                 <th>Precio Lista</th>
@@ -98,28 +99,29 @@
                                 </tr>
                             </thead>
                             <tbody id="myTable">
-                            <?php 
+                            <?php
+                             include_once("clases/libro.php");
                               $libro = new Libro();
                               $libros =  $libro->mostrarLibros();
                               
                               $cant = count($libros);
                               foreach($libros as $unlibro) { ?>
                               <tr>
-                                   <td name="isbn"> <?php echo $unlibro["isbn"] ?></td>
-                                   <td id="titulo"> <?php echo $unlibro["titulo"] ?></td>
-                                   <td name="pv"> <?php echo $unlibro["preciov"] ?></td>
-                                   <td name="pl"> <?php echo $unlibro["preciol"] ?></td>
-                                   <td name="genero"> <?php echo $unlibro["genero"] ?></td>
-                                   <td name="stock"> <?php echo $unlibro["stock"] ?></td>
-                                   <td name="stockmin"> <?php echo $unlibro["stockmin"] ?></td>
-                                   <td><input type="submit" class="form-control" name="submit" value="Modificar"></td>
-                                   
+                                   <td> <?php echo $unlibro["isbn"] ?></td>
+                                   <td> <?php echo $unlibro["titulo"] ?></td>
+                                   <td> <?php echo $unlibro["preciov"] ?></td>
+                                   <td> <?php echo $unlibro["preciol"] ?></td>
+                                   <td> <?php echo $unlibro["genero"] ?></td>
+                                   <td> <?php echo $unlibro["stock"] ?></td>
+                                   <td> <?php echo $unlibro["stockmin"] ?></td>
+                                   <td>
+                                       <?php echo "<a href='modificar.php?isbn=". $unlibro["isbn"] ."'>Modificar</a>"; ?>
+                                  </td>
                               </tr>
-                              <?php
-                              }?> 
+                              <?php }?> 
                           </tbody>
                             </table>
-                         </form>
+                        
                     </div>
                 </div>
             </div>

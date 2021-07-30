@@ -87,7 +87,7 @@
                             <table class="table table-bordered">
                             <thead>
                                 <tr>
-                                   <th>ISBN</th>
+                                <th>ISBN</th>
                                 <th>Titulo</th>
                                 <th>Precio Venta</th>
                                 <th>Precio Lista</th>
@@ -99,31 +99,26 @@
                             </thead>
                             <tbody id="myTable">
                             <tr>
-                              <!-- <td>Alicia en el pais de las maravillas</td>
-                              <td>500</td>
-                              <td>300</td>
-                              <td>Fantasía</td>
-                              <td>80</td>
-                              <td>5</td>
-                              <td><a href="#" class="button" data-toggle="modal" data-target="#modal-form">Eliminar</a></td> -->
-                            </tr>
-                            <tr>
-                                <!-- <td>IT</td>
-                                <td>1500</td>
-                                <td>20</td>
-                                <td>Terror</td>
-                                <td>70</td>
-                                <td>10</td>
-                                <td><a href="#" class="button" data-toggle="modal" data-target="#modal-form">Eliminar</a></td> -->
-                            </tr>
-                            <tr>
-                                <!-- <td>Los juegos del hambre</td>
-                                <td>7500</td>
-                                <td>250</td>
-                                <td>Acción</td>
-                                <td>50</td>
-                                <td>3</td>
-                                <td><a href="#" class="button" data-toggle="modal" data-target="#modal-form">Eliminar</a></td> -->
+                            <?php
+                             include_once("clases/libro.php");
+                              $libro = new Libro();
+                              $libros =  $libro->mostrarLibros();
+                              
+                              $cant = count($libros);
+                              foreach($libros as $unlibro) { ?>
+                              <tr>
+                                   <td> <?php echo $unlibro["isbn"] ?></td>
+                                   <td> <?php echo $unlibro["titulo"] ?></td>
+                                   <td> <?php echo $unlibro["preciov"] ?></td>
+                                   <td> <?php echo $unlibro["preciol"] ?></td>
+                                   <td> <?php echo $unlibro["genero"] ?></td>
+                                   <td> <?php echo $unlibro["stock"] ?></td>
+                                   <td> <?php echo $unlibro["stockmin"] ?></td>
+                                   <td>
+                                      <?php echo "<a href='eliminar.php?isbn=". $unlibro["isbn"] ."'>Eliminar</a>"; ?>
+                                  </td>
+                              </tr>
+                              <?php }?>  
                             </tr>
                           </tbody>
                             </table>

@@ -108,7 +108,7 @@
                     <div class="col-md-offset-1 col-md-10 col-sm-12">
                          <!-- CREATE THUMB -->
                          <div class="create-detail-thumb">
-                            <h2>¡Libro Agregado!</h2>
+                            <h2>¡Algo salió mal! Intente nuevamente.</h2>
                             <br>
                             <a href="create.php" class="section-btn">Volver</a>
                          </div>

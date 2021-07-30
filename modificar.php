@@ -77,52 +77,71 @@
           </div>
      </section>
 
-    <form>
-        <?php $titulo = $_POST["titulo"];  ?>
-        <div class="form-group">
-            <label for="title">Titulo</label>
-            <input type="text" class="form-control" id="title" name="titulo" placeholder="Titulo" value="<?php $_POST["titulo"] ;?>">
-        </div>
-        <div class="form-row">
-            <div class="form-group col-md-4">
-                <label for="isbn">ISBN</label>
-                <input type="text" class="form-control" id="isbn" name="isbn" placeholder="ISBN" value="<?php $_POST["isbn"]; ?>">
-            </div>
-            <div class="form-group col-md-2">
-                <label for="stock">Stock </label>
-                <input type="text" class="form-control" id="stock" name="stock" placeholder="Stock" value="<?php $_POST["stock"]; ?>">
-            </div>
-            <div class="form-group col-md-2">
-                <label for="stockm">Stock Mínimo</label>
-                <input type="text" class="form-control" id="stockm" name="stockm" placeholder="Stock Mínimo" value="<?php $_POST["stockmin"]; ?>">
-            </div>
-        </div>
-        <div class="form-row">
-            <div class="form-group col-md-4">
-                <label for="pv">Precio Venta</label>
-                <input type="text" class="form-control" id="pv" name="pv" placeholder="Precio Venta" value="<?php $_POST["pv"]; ?>">
-            </div>
-            <div class="form-group col-md-6">
-                <label for="pl">Precio Lista</label>
-                <input type="text" class="form-control" id="pl" name="pl" placeholder="Precio Lista" value="<?php $_POST["pl"]; ?>">
-            </div>
-            <div class="form-group col-md-6">
-                <label for="inputState">Categoria</label>
-                <select id="inputState" name="idgenero" class="form-control">
-                    <option selected disabled value="">Elige...</option>
-                    <option value="1">Terror</option>
-                    <option value="2">Romántico</option>
-                    <option value="3">Aventura</option>
-                    <option value="4">Acción</option>
-                    <option value="5">Thiller</option>
-                    <option value="6">Fantasía</option>
-                </select>
-            </div>
-        </div>
-        <input type="submit" class="form-control" name="submit" value="Agregar">
-        <a href="modif.php" class="section-btn">Volver</a>
+     <section id="modif-detail" data-stellar-background-ratio="0.5">
+          <div class="container">
+               <div class="row">
 
-    </form>
+                    <div class="col-md-offset-1 col-md-10 col-sm-12">
+                         <!-- CREATE THUMB -->
+                         <div class="modif-detail-thumb">
+
+                              <?php
+                              include_once("clases/libro.php");
+                              $unlibro= new Libro();
+                              echo $_GET["isbn"];
+                              $libro= $unlibro->mostrarUnLibro($_GET["isbn"]);?>
+                              <h2>Complete el Formulario</h2>
+                              <form action="agregarmodif.php" method="POST">
+                                   <div class="form-group">
+                                        <label for="title">Titulo</label>
+                                        <input type="text" class="form-control" id="title" name="titulo" placeholder="Titulo" value="<?php echo $libro["titulo"] ?>">
+                                   </div>
+                                   <div class="form-row">
+                                        <div class="form-group col-md-4">
+                                           <label for="isbn">ISBN</label>
+                                           <input type="text" class="form-control" id="isbn" name="isbn" placeholder="ISBN" value="<?php echo $libro["isbn"] ?>">
+                                        </div>
+                                        <div class="form-group col-md-2">
+                                           <label for="stock">Stock </label>
+                                           <input type="text" class="form-control" id="stock" name="stock" placeholder="Stock" value="<?php echo $libro["stock"] ?>">
+                                        </div>
+                                        <div class="form-group col-md-2">
+                                             <label for="stockm">Stock Mínimo</label>
+                                             <input type="text" class="form-control" id="stockm" name="stockm" placeholder="Stock Mínimo" value="<?php echo $libro["stockmin"] ?>">
+                                          </div>
+                                      </div>
+                                   <div class="form-row">
+                                        <div class="form-group col-md-4">
+                                             <label for="pv">Precio Venta</label>
+                                             <input type="text" class="form-control" id="pv" name="pv" placeholder="Precio Venta" value="<?php echo $libro["preciov"] ?>">
+                                        </div>
+                                        <div class="form-group col-md-6">
+                                             <label for="pl">Precio Lista</label>
+                                             <input type="text" class="form-control" id="pl" name="pl" placeholder="Precio Lista" value="<?php echo $libro["preciol"] ?>">
+                                        </div>
+                                        <div class="form-group col-md-6">
+                                             <label for="inputState">Categoria</label>
+                                             <select id="inputState" name="idgenero" class="form-control">
+                                               <option selected disabled value="">Elige...</option>
+                                               <option value="1">Terror</option>
+                                               <option value="2">Romántico</option>
+                                               <option value="3">Aventura</option>
+                                               <option value="4">Acción</option>
+                                               <option value="5">Thiller</option>
+                                               <option value="6">Fantasía</option>
+                                             </select>
+                                        </div>
+                                   </div>
+                                   <input type="submit" class="form-control" name="submit" value="Modificar">
+                                 </form>
+                         </div>
+                    </div>
+                    
+               </div>
+          </div>
+     </section>
+
+
 <!-- FOOTER -->
 <footer data-stellar-background-ratio="0.5">
           <div class="container">

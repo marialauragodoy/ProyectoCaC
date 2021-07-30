@@ -1,8 +1,8 @@
-<!DOCTYPE html>
+!DOCTYPE html>
 <html lang="en">
 <head>
 
-     <title>Todos los Libros</title>
+     <title>Eliminar Libros</title>
 
      <meta charset="UTF-8">
      <meta http-equiv="X-UA-Compatible" content="IE=Edge">
@@ -14,11 +14,9 @@
      <link rel="stylesheet" href="css/bootstrap.min.css">
      <link rel="stylesheet" href="css/magnific-popup.css">
      <link rel="stylesheet" href="css/font-awesome.min.css">
-     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
      <!-- MAIN CSS -->
      <link rel="stylesheet" href="css/estilos-style.css">
-     
-     <?php include_once("clases/libro.php");?>
 </head>
 <body>
 
@@ -66,82 +64,53 @@
           </div>
      </section>
 
-     <!-- READ HEADER -->
-     <section id="read-header" data-stellar-background-ratio="0.5">
+     <!-- DELETE HEADER -->
+     <section id="delete-header" data-stellar-background-ratio="0.5">
           <div class="overlay"></div>
           <div class="container">
                <div class="row">
                     <div class="col-md-offset-1 col-md-5 col-sm-12">
-                         <h2>Nuestra colección para vos</h2>
+                         <h2>Elimina libros de nuestra colección</h2>
                     </div>     
                </div>
           </div>
      </section>
 
-     <!-- READ DETAIL -->
-     <section id="read-detail" data-stellar-background-ratio="0.5">
-        <div class="container">
-             <div class="row">
-                  <div class="col-md-offset-1 col-md-10 col-sm-12">
-                       <!-- READ THUMB -->
-                       <div class="read-detail-thumb">
-                      
-                            <h2>Buscar Libros</h2>
-                            <p>Escribe en el buscador lo que necesites encontrar</p>  
-                            <input class="form-control" id="myInput" type="text" placeholder="Buscar..">
+     <section id="delete-detail" data-stellar-background-ratio="0.5">
+          <div class="container">
+               <div class="row">
+               <?php 
+               include_once("clases/libro.php");
+                $libro = new Libro();
+                $visbn = $_GET["isbn"];   
+                $libro = new Libro();   
+                    
+                $result = $libro->eliminarLibro($visbn);
+               if ($result){ ?>
+                    <div class="col-md-offset-1 col-md-10 col-sm-12">
+                         <!-- CREATE THUMB -->
+                         <div class="delete-detail-thumb">
+                            <h2>¡Libro Eliminado!</h2>
                             <br>
-                            <table class="table table-bordered">
-                            <thead>
-                                <tr>
-                                <th>ISBN</th>
-                                 <th>Titulo</th>
-                                <th>Precio Venta</th>
-                                <th>Precio Lista</th>
-                                <th>Categoria</th>
-                                <th>Stock</th>
-                                <th>Stock Mínimo</th>
-                                </tr>
-                            </thead>
-                            <tbody id="myTable">
-                            <?php 
-                              $libro = new Libro();
-                              $libros =  $libro->mostrarLibros();
-                              
-                              $cant = count($libros);
-                              foreach($libros as $unlibro) { ?>
-                              <tr>
-                                   <td> <?php echo $unlibro["isbn"] ?></td>
-                                   <td> <?php echo $unlibro["titulo"] ?></td>
-                                   <td> <?php echo $unlibro["preciov"] ?></td>
-                                   <td> <?php echo $unlibro["preciol"] ?></td>
-                                   <td> <?php echo $unlibro["genero"] ?></td>
-                                   <td> <?php echo $unlibro["stock"] ?></td>
-                                   <td> <?php echo $unlibro["stockmin"] ?></td>
-                              </tr>
-                              <?php }?>                             
-                          </tbody>
-                            </table>
-                      
-                      <script>
-                      $(document).ready(function(){
-                        $("#myInput").on("keyup", function() {
-                          var value = $(this).val().toLowerCase();
-                          $("#myTable tr").filter(function() {
-                            $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
-                          });
-                        });
-                      });
-                      </script>
-                      </div>
-                </div> 
-            </div>
-        </div>
-        
-   </section>
-    
+                            <a href="delete.php" class="section-btn">Volver</a>
+                         </div>
+                    </div>
+               <?php } else { ?>
+                    <div class="col-md-offset-1 col-md-10 col-sm-12">
+                         <!-- CREATE THUMB -->
+                         <div class="delete-detail-thumb">
+                            <h2>¡Algo salió mal! Intente nuevamente.</h2>
+                            <br>
+                            <a href="delete.php" class="section-btn">Volver</a>
+                         </div>
+                    </div> 
+               <?php } ?>
+               </div>
+          </div>
+     </section>
 
-     <!-- FOOTER -->
-     <footer data-stellar-background-ratio="0.5">
+      <!-- FOOTER -->
+      <footer data-stellar-background-ratio="0.5">
           <div class="container">
                <div class="row">
   
@@ -183,6 +152,6 @@
      <script src="js/jquery.magnific-popup.min.js"></script>
      <script src="js/smoothscroll.js"></script>
      <script src="js/custom.js"></script>
-
+     
 </body>
 </html>
