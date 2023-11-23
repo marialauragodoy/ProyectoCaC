@@ -1,2 +1,2 @@
-Hola, proyecto php
+Hola, este es un proyecto php
 :):
